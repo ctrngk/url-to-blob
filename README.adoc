@@ -1,0 +1,57 @@
+= change url to blob 
+
+=== input database (db.sqlite3)
+
+<img alt="" src="http....">
+
+=== output database (db.sqlite3)
+
+<img alt="" src="data:image/png;base64,.......">
+
+
+== detail
+
+fetch image from url
+
+encode image as base64
+
+build as blob ("data:image/jpeg;base64,...")
+
+finally, save back to database
+
+== usage:
+install:
+```sh
+python3 -m pip install PIL, bs4, requests
+```
+
+TIP: change your own db.sqlite3 path in  changedb.py.
+The default db.sqlite3 is for demo purpose.
+
+run:
+```sh
+python3 changedb.py
+```
+
+
+== database query
+=== load db.sqlite3 file
+```sh
+sqlite3 ./db.sqlite3
+```
+=== view table's name
+```sqlite3
+.tables
+```
+=== query
+```sqlite3
+select * from myapp_excardinfo;
+```
+=== close database
+```sqlite3
+.quit
+```
+
+== Caveats
+* PIL.Image is used to decide "png" or "jpeg". Other formats not tested.
+* I am lazy. if #src="http# appeared in other place other than <img src= >, it screwed. :TODO
